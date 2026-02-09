@@ -7,7 +7,7 @@ const server = http.createServer((req, res)=>{
    
     // res.end("Hello Coder Army");
 
-    if(req.url=="/"){
+    if(req.url==="/"){
         res.end("Hello Coder Army");
     }
 
