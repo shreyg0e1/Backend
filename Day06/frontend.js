@@ -1,8 +1,9 @@
 
 // Default : get method
 const response2 = await fetch ('https://api.example.com/data');
+const data = response2.json(); 
 
-
+// format
 const response = await fetch ('https://api.example.com/data',{
     method:'POST',
     headers: {
