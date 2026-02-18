@@ -92,6 +92,54 @@ app.patch("/admin", (req,res)=>{
   
 })
 
+
+
+// user ki chize
+
+// user need to add in cart
+app.post("/user/:id", (req,res)=>{
+   const id = parseInt(req.params.id)
+   const foodItem= Foodmenu.find(item=> item.id===id)
+
+   if(foodItem){
+    AddToCart.push(foodItem)
+    res.status(200).send("Item added sucessfully");
+   }
+   else{
+    res.send("Item is out of stock");
+   }
+})
+
+// user need to delete from cart
+app.delete("/user/:id",(req,res)=>{
+    const id = parseInt(req.params.id);
+    const index= AddToCart.findIndex(item=>item.id===id)
+
+    if(index!=-1){
+        AddToCart.splice(index,1);
+        res.send("Item Removed Sucessfully")        
+    }
+
+    else{
+         res.send("Item is not present in cart")
+    }
+})
+
+
+// look at my cart user
+app.get("/user",(req,res)=>{
+
+    if(AddToCart.length==0){
+        res.send("Cart is Empty")
+    }
+
+    else{
+    res.send(AddToCart);
+    }
+})
+
+
+
 app.listen(3000,()=>{
     console.log("Listening at port 3000")
 })
