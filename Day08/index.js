@@ -44,8 +44,13 @@ app.use("/admin",Auth)
 
 //  Admin kese pta chlega kon hai  
 app.post("/admin", (req,res)=>{
-        Foodmenu.push(req.body);
+       try{ 
+       Foodmenu.push(req.body);
         res.status(201).send("Item Added Sucessfully")
+    }
+    catch(err){
+        res.send("err")
+    }
 })
 
 app.delete("/admin/:id",(req,res)=>{
@@ -112,6 +117,8 @@ app.post("/user/:id", (req,res)=>{
 
 // user need to delete from cart
 app.delete("/user/:id",(req,res)=>{
+    
+    try{
     const id = parseInt(req.params.id);
     const index= AddToCart.findIndex(item=>item.id===id)
 
@@ -122,6 +129,9 @@ app.delete("/user/:id",(req,res)=>{
 
     else{
          res.send("Item is not present in cart")
+    }}
+    catch(error){
+        res.send("Some error: " + err); 
     }
 })
 
@@ -138,6 +148,25 @@ app.get("/user",(req,res)=>{
     }
 })
 
+app.get("/dummy", (req,res)=>{
+    
+    // try{
+    // // JSON.parse('{"name" : "shrey", "age":20}');
+    // throw new Error('BROKEN')
+    // res.send("Hello Coder")
+    // }
+
+    // catch(err){
+    //     res.send("Some error Occured " + err)
+    // }
+
+
+    throw new Error('DB cant connected');
+    res.send("Connected");
+
+
+
+})
 
 
 app.listen(3000,()=>{
