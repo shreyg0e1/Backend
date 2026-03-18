@@ -6,7 +6,7 @@ const app= express(); //server create
 // "/contact"
 // "/detail/person"
 
-// ? :- char become Optional, eg:- abou?t = abou or about both works and redirects to same page
+// ? :- char become Optional, eg:- abou?t = abot or about both works and redirects to same page
 // + :- same char can be repeated multiple times, eg:- abou+t = abouuuuuut , redirects to same page
 // * :- any number of character can arrive but last vala same ho, eg:- abou*t = aboudshakhkddgiuhdhdt, redirects to same page
 
